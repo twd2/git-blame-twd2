@@ -1,7 +1,7 @@
 prefix=/usr/local
 
 # files that need mode 755
-EXEC_FILES =git-blame-someone-else
+EXEC_FILES =git-blame-twd2
 
 all:
 	@echo "usage: make install"

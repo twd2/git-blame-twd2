@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-if [ $# -ne 2 ]; then
-  >&2 echo "Usage: $0 <author> <commit>"
+if [ $# -ne 1 ]; then
+  >&2 echo "Usage: $0 <commit>"
   exit 1
 fi
 
-AUTHOR=$1
+AUTHOR="twd2 <twd2@163.com>"
 AUTHOR_NAME=$(echo $AUTHOR | perl -wlne '/^(.*)\s*<.*>$/ and print $1')
 AUTHOR_EMAIL=$(echo $AUTHOR | perl -wlne '/^.*\s*<(.*)>$/ and print $1')
-COMMIT=$(git rev-parse --short $2)
+COMMIT=$(git rev-parse --short $1)
 
 {
   GIT_SEQUENCE_EDITOR="sed -i -e 's/^pick $COMMIT/edit $COMMIT/'" git rebase -i $COMMIT~1^^ 
